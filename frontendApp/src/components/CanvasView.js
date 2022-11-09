@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CanvasDraw from "react-canvas-draw";
 import classNames from "../index.css";
+import axios from "axios";
 
 class CanvasView extends Component {
     state = {
@@ -24,6 +25,18 @@ class CanvasView extends Component {
                     "savedDrawing",
                     this.saveableCanvas.getSaveData()
                 );
+                console.log(this.saveableCanvas.getSaveData());
+
+                axios.post('http://127.0.0.1:8000/draws/save', {
+                    title: 'My drawing',
+                    data: this.saveableCanvas.getSaveData()
+                  })
+                  .then(function (response) {
+                    console.log(response);
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  });
                 }}
             >
                 Save
