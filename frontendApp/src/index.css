@@ -1,0 +1,73 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@CiroGamboa 
+This repository has been archived by the owner. It is now read-only.
+embiem
+/
+react-canvas-draw
+Public archive
+Code
+Issues
+37
+Pull requests
+14
+Actions
+Projects
+1
+Security
+Insights
+react-canvas-draw/demo/src/index.css
+@embiem
+embiem Correctly scale loaded saveData if dimensions differ
+…
+Latest commit a5cb027 on Mar 3, 2018
+ History
+ 1 contributor
+40 lines (34 sloc)  664 Bytes
+
+:root {
+  --yellow: #ffc600;
+  --black: #272727;
+}
+
+html {
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-weight: 900;
+  font-size: 16px;
+  color: var(--black);
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
+}
+
+body {
+  background-image: linear-gradient(110deg, #f93d66, #6d47d9);
+  margin: 50px;
+  background-position: fixed;
+}
+
+span {
+  background-color: darkgrey;
+  padding: 0.3rem;
+  font-size: 0.8em;
+  font-family: monospace;
+}
+
+p {
+  line-height: 1.6em;
+}
+
+.tools {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+}
+
+input[type=number] {
+  width: 50px;
+}
+

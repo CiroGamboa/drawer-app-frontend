@@ -1,10 +1,9 @@
 import './App.css';
-import CanvasDraw from "react-canvas-draw";
-
+import CanvasView from './components/CanvasView';
 function App() {
   return (
     <div className="App">
-      <CanvasDraw />
+      <CanvasView />
     </div>
   );
 }
