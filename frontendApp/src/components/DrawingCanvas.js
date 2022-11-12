@@ -3,8 +3,9 @@ import CanvasDraw from "react-canvas-draw";
 import classNames from "../index.css";
 import axios from "axios";
 
-class CanvasView extends Component {
+class DrawingCanvas extends Component {
     state = {
+        title: "New distribution",
         color: "#154c79",
         width: 800,
         height: 400,
@@ -27,9 +28,9 @@ class CanvasView extends Component {
                 );
                 console.log(this.saveableCanvas.getSaveData());
 
-                axios.post('http://127.0.0.1:8000/draws/save', {
-                    title: 'My drawing',
-                    data: this.saveableCanvas.getSaveData()
+                axios.post('http://127.0.0.1:8000/draws/api', {
+                    draw_title: this.state.title,
+                    draw_payload: this.saveableCanvas.getSaveData()
                   })
                   .then(function (response) {
                     console.log(response);
@@ -63,6 +64,16 @@ class CanvasView extends Component {
             >
                 GetDataURL
             </button>
+            <div>
+                <label>Title</label>
+                <input
+                type="text"
+                value={this.state.title}
+                onChange={e =>
+                    this.setState({ title: e.target.value })
+                }
+                />
+            </div>
             <div>
                 <label>Width:</label>
                 <input
@@ -117,4 +128,4 @@ class CanvasView extends Component {
     }
 }
 
-export default CanvasView;
+export default DrawingCanvas;
