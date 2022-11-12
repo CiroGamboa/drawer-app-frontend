@@ -1,7 +1,6 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import CreateDraw from './components/CreateDraw';
 import Home from './components/Home';
-import Typography from '@mui/material/Typography';
 import Header from './components/Header';
 
 const App = () => {

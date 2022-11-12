@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -32,13 +32,19 @@ function Header(props) {
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
+          
+      <ListItem key="new" disablePadding>
+            <ListItemButton sx={{ textAlign: 'center' }} href="/home">
+                    <ListItemText primary="Home" />
             </ListItemButton>
+            
+          </ListItem>          
+          <ListItem key="new" disablePadding>
+            <ListItemButton sx={{ textAlign: 'center' }} href="/new">
+                    <ListItemText primary="New draw" />
+            </ListItemButton>
+            
           </ListItem>
-        ))}
       </List>
     </Box>
   );
@@ -66,11 +72,12 @@ function Header(props) {
             Metaculus Draw App
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
-                {item}
+              <Button key="home" sx={{ color: '#fff' }} href="/home">
+                Home
               </Button>
-            ))}
+            <Button key="new" sx={{ color: '#fff' }} href="/new">
+                New Draw
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>
