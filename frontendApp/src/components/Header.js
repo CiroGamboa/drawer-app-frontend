@@ -71,7 +71,7 @@ function Header(props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            Metaculus Draw App
+            Metaculus Draw by CiroGam
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
               <Link to={"home/"} state={{mode:"new"}}>

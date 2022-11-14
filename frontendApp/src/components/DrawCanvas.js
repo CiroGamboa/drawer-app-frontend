@@ -166,8 +166,12 @@ class DrawComponent extends Component {
                         variant="contained"
                         onClick={() => {
                             this.saveableCanvas.undo();
-                            const drawId = this.props.location.state.savedDraw.id;
-                            deleteDraw(() => window.location.replace("/home"),drawId);
+                            if(this.props.location.state.mode === "new"){
+                                window.location.replace("/home")
+                            } else {
+                                const drawId = this.props.location.state.savedDraw.id;
+                                deleteDraw(() => window.location.replace("/home"),drawId);
+                            }
                         }}
                     >
                         Delete
