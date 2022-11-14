@@ -1,7 +1,6 @@
-
+import {Link} from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { styled } from '@mui/material/styles';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -16,13 +15,15 @@ const listItems = (draws) => {
                 draws.map((draw) => {
                     return (
                         <ListItem key={draw.id}>
-                        <ListItemIcon>
-                            <TimelineIcon />
-                        </ListItemIcon>
-                        <ListItemText
-                            primary={draw.draw_title}
-                        />
-                    </ListItem>
+                                <ListItemIcon>
+                                    <TimelineIcon />
+                                </ListItemIcon>
+                                <Link to={"draws/" + draw.id} state={{savedDraw:draw, mode:"edit"}}>
+                                    <ListItemText
+                                        primary={draw.draw_title}
+                                    />
+                                </Link>
+                        </ListItem>
                     )
                 }
             )
