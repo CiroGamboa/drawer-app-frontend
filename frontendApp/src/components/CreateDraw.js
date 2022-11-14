@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import DrawingCanvas from './DrawingCanvas';
+import DrawCanvas from './DrawCanvas';
 import classNames from "../index.css";
-import axios from "axios";
+import { saveDraw } from "../api/drawCrud";
 
 class CreateDraw extends Component {
 
@@ -23,22 +23,18 @@ class CreateDraw extends Component {
             <div className={classNames.tools}>
             <button
                 onClick={() => {
-                localStorage.setItem(
-                    "savedDrawing",
-                    this.saveableCanvas.getSaveData()
-                );
-                console.log(this.saveableCanvas.getSaveData());
+                    localStorage.setItem(
+                        "savedDrawing",
+                        this.saveableCanvas.getSaveData()
+                    );
+                    console.log(this.saveableCanvas.getSaveData());
 
-                axios.post('http://127.0.0.1:8000/draws/api', {
-                    draw_title: this.state.title,
-                    draw_payload: this.saveableCanvas.getSaveData()
-                  })
-                  .then(function (response) {
-                    console.log(response);
-                  })
-                  .catch(function (error) {
-                    console.log(error);
-                  });
+                    var draw = {
+                        "title": this.state.title,
+                        "payload": this.saveableCanvas.getSaveData()
+                    }
+
+                    saveDraw(draw);
                 }}
             >
                 Save
@@ -116,7 +112,7 @@ class CreateDraw extends Component {
                 />
             </div>
             </div>
-          <DrawingCanvas draw={this.state}/>
+          <DrawCanvas draw={this.state}/>
         </div>
     );
   }

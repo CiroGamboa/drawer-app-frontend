@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import CanvasDraw from "react-canvas-draw";
-import classNames from "../index.css";
 import { useLocation } from 'react-router-dom';
 import { Button, Typography, TextField } from "@mui/material";
 import Stack from '@mui/material/Stack';
+import { saveDraw } from "../api/drawCrud";
+
 
 
 const DrawCanvas = props => {
@@ -131,12 +132,20 @@ class DrawComponent extends Component {
 
                 <Stack direction="row" spacing={2}>
                     <Button
-                    variant="contained"
+                        variant="contained"
                         onClick={() => {
                             localStorage.setItem(
                                 "savedDrawing",
                                 this.saveableCanvas.getSaveData()
                             );
+                            console.log(this.saveableCanvas.getSaveData());
+        
+                            var draw = {
+                                "title": this.state.title,
+                                "payload": JSON.parse(this.saveableCanvas.getSaveData())
+                            }
+        
+                            saveDraw(draw);
                         }}
                     >
                         Save

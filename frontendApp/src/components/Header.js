@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -31,19 +32,21 @@ function Header(props) {
       </Typography>
       <Divider />
       <List>
-          
-      <ListItem key="new" disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }} href="/home">
-                    <ListItemText primary="Home" />
-            </ListItemButton>
-            
-          </ListItem>          
-          <ListItem key="new" disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }} href="/new">
+        <ListItem key="home" disablePadding>
+          <Link to={"home/"}>
+              <ListItemButton sx={{ textAlign: 'center' }}>
+                      <ListItemText primary="Home" />
+              </ListItemButton>
+          </Link>
+        </ListItem>          
+        <ListItem key="new" disablePadding>
+          <Link to={"new/"} state={{mode:"new"}}>
+            <ListItemButton sx={{ textAlign: 'center' }}>
                     <ListItemText primary="New draw" />
             </ListItemButton>
-            
-          </ListItem>
+          </Link>
+              
+        </ListItem>
       </List>
     </Box>
   );
@@ -71,12 +74,16 @@ function Header(props) {
             Metaculus Draw App
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-              <Button key="home" sx={{ color: '#fff' }} href="/home">
-                Home
-              </Button>
-            <Button key="new" sx={{ color: '#fff' }} href="/new">
-                New Draw
-            </Button>
+              <Link to={"home/"} state={{mode:"new"}}>
+                <Button key="home" sx={{ color: '#fff' }}>
+                  Home
+                </Button>
+              </Link>
+              <Link to={"new/"} state={{mode:"new"}}>
+                <Button key="new" sx={{ color: '#fff' }}>
+                    New Draw
+                </Button>
+              </Link>
           </Box>
         </Toolbar>
       </AppBar>
