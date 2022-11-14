@@ -1,0 +1,8 @@
+.layout {
+    margin: 20px;
+    padding: 20px;
+}
+
+.canvas {
+    outline: dashed black;
+}
