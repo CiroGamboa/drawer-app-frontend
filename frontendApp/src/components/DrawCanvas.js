@@ -3,7 +3,7 @@ import CanvasDraw from "react-canvas-draw";
 import { useLocation } from 'react-router-dom';
 import { Button, Typography, TextField } from "@mui/material";
 import Stack from '@mui/material/Stack';
-import { saveDraw } from "../api/drawCrud";
+import { createDraw, updateDraw } from "../api/drawCrud";
 
 
 
@@ -16,16 +16,15 @@ class DrawComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: "New distribution",
+            title: this.props.location.state.mode === "new" ? "New distribution" : this.props.location.state.savedDraw.draw_title,
             color: "#154c79",
-            width: 800,
-            height: 400,
-            brushRadius:5,
+            width: this.props.location.state.mode === "new" ? 800 : this.props.location.state.savedDraw.draw_payload.width,
+            height: this.props.location.state.mode === "new" ? 400 : this.props.location.state.savedDraw.draw_payload.height,
+            brushRadius: 5,
             lazyRadius: 12
           };
 
         this.handleUndo = this.handleUndo.bind(this);
-        this.handleSave = this.handleSave.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
       }
       componentDidMount() {
@@ -39,28 +38,12 @@ class DrawComponent extends Component {
       handleUndo() {
         this.saveableCanvas.undo();
       }
-      handleSave(){
-        console.log("Save");
-      }
       handleKeyPress(event) {
         // if the user hits delete, undo the last change
         if (event.keyCode === 8 || event.keyCode === 46) {
           this.handleUndo();
-        
-        // If the user hits Enter, save the draw
-        } else if (event.keyCode === 13) {
-            this.handleSave();
-        }
+        } 
       }
-
-    // state = {
-    //     title: "New distribution",
-    //     color: "#154c79",
-    //     width: 800,
-    //     height: 400,
-    //     brushRadius:5,
-    //     lazyRadius: 12
-    //   };
 
   render() {
     console.log(this.props);
@@ -139,16 +122,21 @@ class DrawComponent extends Component {
                                 this.saveableCanvas.getSaveData()
                             );
                             console.log(this.saveableCanvas.getSaveData());
-        
+                            
                             var draw = {
                                 "title": this.state.title,
                                 "payload": JSON.parse(this.saveableCanvas.getSaveData())
                             }
-        
-                            saveDraw(draw);
+
+                            if(this.props.location.state.mode === "new"){
+                                createDraw(draw);
+                            } else {
+                                const drawId = this.props.location.state.savedDraw.id;
+                                updateDraw(draw,drawId);
+                            } 
                         }}
                     >
-                        Save
+                        {this.props.location.state.mode === "new" ? "Save" : "Update"}
                     </Button>
                     <Button
                         variant="contained"

@@ -10,29 +10,39 @@ const getAllDraws = (callback) => {
         .catch(error => alert(`Error: ${error}`));
 }
 
-const saveDraw = (draw) => {
-    console.log(draw);
-    axios.post(`${backendEndpoint}/draws/api`, {
-        draw_title: draw.title,
-        draw_payload: draw.payload
-      })
-      .then(function (response) {
-        if(response.status === 201) {
-            alert("Saved successfully");
-        }
-      })
-      .catch(function (error) {
-        alert(`Error: ${error}`);
-      });
+const createDraw = (draw) => {
+  axios.post(`${backendEndpoint}/draws/api`, {
+      draw_title: draw.title,
+      draw_payload: draw.payload
+    })
+    .then(function (response) {
+      if(response.status === 201) {
+          alert("Saved successfully");
+      }
+    })
+    .catch(function (error) {
+      alert(`Error: ${error}`);
+    });
 }
 
-const updateDraw = () => {
-
+const updateDraw = (draw, id) => {
+  axios.put(`${backendEndpoint}/draws/api/${id}/`, {
+    draw_title: draw.title,
+    draw_payload: draw.payload
+  })
+  .then(function (response) {
+    if(response.status === 200) {
+        alert("Updated successfully");
+    }
+  })
+  .catch(function (error) {
+    alert(`Error: ${error}`);
+  });
 }
 
 const deleteDraw = () => {
 
 }
 
-export {getAllDraws, saveDraw, updateDraw, deleteDraw};
+export {getAllDraws, createDraw, updateDraw, deleteDraw};
 
