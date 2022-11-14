@@ -3,7 +3,7 @@ import CanvasDraw from "react-canvas-draw";
 import { useLocation } from 'react-router-dom';
 import { Button, Typography, TextField } from "@mui/material";
 import Stack from '@mui/material/Stack';
-import { createDraw, updateDraw } from "../api/drawCrud";
+import { createDraw, updateDraw, deleteDraw } from "../api/drawCrud";
 
 
 
@@ -166,6 +166,8 @@ class DrawComponent extends Component {
                         variant="contained"
                         onClick={() => {
                             this.saveableCanvas.undo();
+                            const drawId = this.props.location.state.savedDraw.id;
+                            deleteDraw(() => window.location.replace("/home"),drawId);
                         }}
                     >
                         Delete

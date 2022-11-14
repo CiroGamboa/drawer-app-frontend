@@ -40,8 +40,15 @@ const updateDraw = (draw, id) => {
   });
 }
 
-const deleteDraw = () => {
-
+const deleteDraw = (callback,id) => {
+  axios.delete(`${backendEndpoint}/draws/api/${id}/`)
+  .then(response => {
+      if(response.status === 200) {
+        alert("Deleted successfully");
+        callback();
+  }
+  })
+  .catch(error => alert(`Error: ${error}`));
 }
 
 export {getAllDraws, createDraw, updateDraw, deleteDraw};
