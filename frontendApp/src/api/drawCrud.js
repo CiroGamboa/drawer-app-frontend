@@ -12,8 +12,8 @@ const getAllDraws = (callback) => {
 
 const createDraw = (draw) => {
   axios.post(`${backendEndpoint}/draws/api`, {
-      draw_title: draw.title,
-      draw_payload: draw.payload
+      title: draw.title,
+      payload: draw.payload
     })
     .then(function (response) {
       if(response.status === 201) {
@@ -27,8 +27,8 @@ const createDraw = (draw) => {
 
 const updateDraw = (draw, id) => {
   axios.put(`${backendEndpoint}/draws/api/${id}/`, {
-    draw_title: draw.title,
-    draw_payload: draw.payload
+    title: draw.title,
+    payload: draw.payload
   })
   .then(function (response) {
     if(response.status === 200) {

@@ -16,10 +16,10 @@ class DrawComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: this.props.location.state.mode === "new" ? "New distribution" : this.props.location.state.savedDraw.draw_title,
+            title: this.props.location.state.mode === "new" ? "New distribution" : this.props.location.state.savedDraw.title,
             color: "#154c79",
-            width: this.props.location.state.mode === "new" ? 800 : this.props.location.state.savedDraw.draw_payload.width,
-            height: this.props.location.state.mode === "new" ? 400 : this.props.location.state.savedDraw.draw_payload.height,
+            width: this.props.location.state.mode === "new" ? 800 : this.props.location.state.savedDraw.payload.width,
+            height: this.props.location.state.mode === "new" ? 400 : this.props.location.state.savedDraw.payload.height,
             brushRadius: 5,
             lazyRadius: 12
           };
@@ -46,7 +46,6 @@ class DrawComponent extends Component {
       }
 
   render() {
-    console.log(this.props);
     return (
         <div className="layout">
             <Stack direction="row" spacing={4}>
@@ -121,7 +120,6 @@ class DrawComponent extends Component {
                                 "savedDrawing",
                                 this.saveableCanvas.getSaveData()
                             );
-                            console.log(this.saveableCanvas.getSaveData());
                             
                             var draw = {
                                 "title": this.state.title,
@@ -194,7 +192,7 @@ class DrawComponent extends Component {
                         (this.loadableCanvas = canvasDraw,
                         this.saveableCanvas = canvasDraw)
                     }
-                    saveData={JSON.stringify(this.props.location.state.savedDraw.draw_payload)}
+                    saveData={JSON.stringify(this.props.location.state.savedDraw.payload)}
                     brushColor={this.state.color}
                     brushRadius={this.state.brushRadius}
                     lazyRadius={this.state.lazyRadius}

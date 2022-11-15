@@ -20,7 +20,7 @@ const listItems = (draws) => {
                                 </ListItemIcon>
                                 <Link to={"draws/" + draw.id} state={{savedDraw:draw, mode:"edit"}}>
                                     <ListItemText
-                                        primary={draw.draw_title}
+                                        primary={draw.title}
                                     />
                                 </Link>
                         </ListItem>
